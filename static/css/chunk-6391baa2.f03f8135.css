@@ -1,0 +1,32 @@
+.navbar[data-v-0421930a] {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+.triangle-up[data-v-0450fd17] {
+  border-bottom: 10px solid #999;
+}
+.triangle-down[data-v-0450fd17],
+.triangle-up[data-v-0450fd17] {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+.triangle-down[data-v-0450fd17] {
+  border-top: 10px solid #999;
+}
+.bt10[data-v-0450fd17] {
+  border-top: 1px solid #999;
+}
+.van_field[data-v-0450fd17] {
+  padding: 0 !important;
+}
+.action_bot[data-v-0450fd17] {
+  border-bottom: 10px solid #2bb7b3;
+}
+.action_top[data-v-0450fd17] {
+  border-top: 10px solid #2bb7b3;
+}
