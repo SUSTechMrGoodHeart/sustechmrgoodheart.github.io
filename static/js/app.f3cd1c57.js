@@ -427,17 +427,6 @@
           data: []
         }
 
-        for (let j = 1; j < n; j++) {
-            let d1 = new Date();
-            d1.setMonth(d1.getMonth() - j);
-            const data_var = Math.floor((Math.random() - 0.5) * 20);
-            d1.setDate(d1.getDate() + data_var);
-            d1.setHours(9, 0, 0);
-            let d2 = new Date(d1);
-            d2.setHours(20, 0, 0);
-            ret.data.push(template(cvt_data(d1), cvt_data(d1), cvt_data(d2), "0", "0"));
-        }
-
         let ld1 = new Date();
         let ld2 = new Date(ld1);
         let ld1d = ld1.getDate();
@@ -461,6 +450,17 @@
         ld2.setDate(ld2d);
         ld2.setHours(ld2h, 0, 0);
         ret.data.push(template(cvt_data(ld1), cvt_data(ld1), cvt_data(ld2), "1", "1"));
+
+        for (let j = 1; j < n; j++) {
+            let d1 = new Date();
+            d1.setMonth(d1.getMonth() - j);
+            const data_var = Math.floor((Math.random() - 0.5) * 20);
+            d1.setDate(d1.getDate() + data_var);
+            d1.setHours(9, 0, 0);
+            let d2 = new Date(d1);
+            d2.setHours(20, 0, 0);
+            ret.data.push(template(cvt_data(d1), cvt_data(d1), cvt_data(d2), "0", "0"));
+        }
 
         return ret;
       }
