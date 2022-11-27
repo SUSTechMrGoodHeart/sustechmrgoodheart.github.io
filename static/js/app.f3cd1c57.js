@@ -413,7 +413,7 @@
               "updateBy" : null,
               "approveId" : 112313144040114123,
               "barStatus" : d,
-              "studentName" : "张家豪",
+              "studentName" : "张子涵",
               "createTime" : b,
               "applyId" : 112314123123434123,
               "validEnd" : c,
@@ -453,18 +453,18 @@
 
         for (let j = 1; j < n; j++) {
             let d1 = new Date();
-            d1.setMonth(d1.getMonth() - j);
-            const data_var = Math.floor((Math.random() - 0.5) * 20);
+            d1.setDate(d1.getDate() - 7 * j);
+            const data_var = Math.round((Math.random() - 0.5) * 6);
             d1.setDate(d1.getDate() + data_var);
-            d1.setHours(9, 0, 0);
+            d1.setHours(7 + Math.round(Math.random() * 3), 0, 0);
             let d2 = new Date(d1);
-            d2.setHours(20, 0, 0);
+            d2.setHours(20 + Math.round(Math.random() * 3), 0, 0);
             ret.data.push(template(cvt_data(d1), cvt_data(d1), cvt_data(d2), "0", "0"));
         }
 
         return ret;
       }
-      const data = gen_random_n(4);
+      const data = gen_random_n(14 + Math.round((Math.random() - 0.5) * 10));
       window.passBarList = data;
       return data;
     }
@@ -478,27 +478,33 @@
         "code": 200,
         "msg": "成功！",
         "data": {
-          "name": "张家豪",
+          "name": "张子涵",
           "account": "12012011",
           "studyAcademy": "树仁书院",
           "bookAcademyId": "1500102011",
           "bookAcademy": "20级11班",
-          "tel": "12345678901",
+          "tel": "16265813309",
           "studyAcademyId": "150000",
         }
       }
     }
     function h(e) {
-      var t = "/client/approveInfoRecord/getMyApproveInfoRecord";
       let ret = {
         "code": 200,
         "msg": "成功！",
         "data": []
       }
+      if (e.property1 !== "1" && e.property1 !== 1) {
+        return ret;
+      }
+      if (window.approvedList !== undefined) {
+        return window.approvedList;
+      }
+      var t = "/client/approveInfoRecord/getMyApproveInfoRecord";
       if (window.passBarList === undefined) {
         d(e);
       }
-      const template = (a,b,c) => {
+      const template = (a,b,c,d) => {
         return {
           "account" : "12012011",
             "leaveStart" : a,
@@ -507,11 +513,11 @@
             "province" : "广东省",
             "bookAcademyId" : "1500102011",
             "gooutType" : "离校-其他事项",
-            "tel" : "12345678901",
+            "tel" : "16265813309",
             "approveTime" : c,
             "city" : "深圳市",
             "areaId" : "440305",
-            "name" : "张家豪",
+            "name" : "张子涵",
             "approveRecordList" : [
           {
             "updateTime" : null,
@@ -535,34 +541,51 @@
           }
         ],
           "destination" : "广东省深圳市南山区",
-          "id" : "114124125415132556",
-          "promiseUrl" : null,
+          "id" : d,
+          "promiseUrl" : "/static/img/lxcns.png",
           "studyAcademyId" : "150000",
           "approveStatus" : "1",
           "bookAcademy" : "20级11班",
           "area" : "南山区",
           "reason" : "购置必需品",
           "studyAcademy" : "树仁书院",
-          "fileUrl" : null,
+          "fileUrl" : "/static/img/jkm.jpeg",
           "applyId" : "11241451515651342",
           "address" : "宝能城"
         }
       }
-      if (e.property1 !== "1" && e.property1 !== 1) {
-        return ret;
-      }
       const passBarList = window.passBarList.data;
+      const baseId = "123456789012345";
         for (let i = 0; i < passBarList.length; i++) {
             const data = passBarList[i];
             const d1 = data.validStart;
             const d2 = data.validEnd;
             const d3 = data.createTime;
-            ret.data.push(template(d1, d2, d3));
+            const d4 = baseId + String(i);
+            ret.data.push(template(d1, d2, d3, d4));
         }
+        window.approvedList = ret;
         return ret;
     }
     function b(e) {
       var t = "/client/approveInfoRecord/detail/".concat(e);
+      if (window.approvedList === undefined) {
+        h("1");
+      }
+      let ret = {
+        "code": 200,
+        "msg": "成功！",
+        "data": null
+      }
+        const approvedList = window.approvedList.data;
+        for (let i = 0; i < approvedList.length; i++) {
+            const data = approvedList[i];
+            if (data.id === e) {
+                ret.data = data;
+                break;
+            }
+        }
+        return ret;
 
     }
     function m(e) {

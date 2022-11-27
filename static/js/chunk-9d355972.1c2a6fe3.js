@@ -721,35 +721,33 @@
             },
             getData: function (e) {
               var a = this;
-              Object(i["b"])(e).then(function (e) {
-                200 == e.code &&
-                  ((a.fromDialog = e.data),
-                  (a.fromDialog.promiseUrl = e.data.promiseUrl
+              e = i["b"](e);
+            ((a.fromDialog = e.data),
+                (a.fromDialog.promiseUrl = e.data.promiseUrl
                     ? [{ url: e.data.promiseUrl }]
                     : []),
-                  (a.fromDialog.fileUrl = e.data.fileUrl
+                (a.fromDialog.fileUrl = e.data.fileUrl
                     ? [{ url: e.data.fileUrl }]
                     : []),
-                  (a.fromDialog.faultUserTelNodd =
+                (a.fromDialog.faultUserTelNodd =
                     e.data.studyAcademy + "/" + e.data.bookAcademy),
-                  (a.fromDialog.destination =
+                (a.fromDialog.destination =
                     e.data.province + "," + e.data.city + "," + e.data.area),
-                  (a.approveList = e.data.approveRecordList),
-                  (a.promisePdf =
+                (a.approveList = e.data.approveRecordList),
+                (a.promisePdf =
                     e.data.promiseUrl.length > 0
-                      ? e.data.promiseUrl[0].url.substr(
-                          e.data.promiseUrl[0].url.lastIndexOf(".") + 1,
-                          3
+                        ? e.data.promiseUrl[0].url.substr(
+                            e.data.promiseUrl[0].url.lastIndexOf(".") + 1,
+                            3
                         )
-                      : []),
-                  (a.filePdf =
+                        : []),
+                (a.filePdf =
                     e.data.fileUrl.length > 0
-                      ? e.data.fileUrl[0].url.substr(
-                          e.data.fileUrl[0].url.lastIndexOf(".") + 1,
-                          3
+                        ? e.data.fileUrl[0].url.substr(
+                            e.data.fileUrl[0].url.lastIndexOf(".") + 1,
+                            3
                         )
-                      : []));
-              });
+                        : []));
             },
             handlepromise: function (e) {
               (this.pdfurl = e[0].url), this.getNumPages(e[0].url);
